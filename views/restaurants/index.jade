@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+
+  h1 Showing All Restaurants
+
+  if obj
+      table.table.table-striped
+        thead
+          tr
+            th name
+            th city
+            th state
+            th cuisine
+            th rating
+            th image
+            th bio
+        tbody
+          for restaurant in obj
+            div.restaurantList
+              h3= restaurant.name
+              img(src=restaurant.image)
+              h5= restaurant.city + ', ' + restaurant.state
+              h5= restaurant.cuisine
+              h6= restaurant.rating
+              
