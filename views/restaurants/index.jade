@@ -2,19 +2,12 @@ extends ../layout
 
 block content
 
-  h1 Showing All Restaurants
-
   if obj
       table.table.table-striped
         thead
-          tr
-            th name
-            th city
-            th state
-            th cuisine
-            th rating
-            th image
-            th bio
+          div.restaurantHeader
+            h1= 'gTables'
+            h4= 'New Restaurant'
         tbody
           for restaurant in obj
             div.restaurantList

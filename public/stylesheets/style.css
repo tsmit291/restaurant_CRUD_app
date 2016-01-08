@@ -7,38 +7,43 @@ a {
   color: #00B7FF;
 }
 
-#box1 {
-  width: 200px;
-  height: 200px;
-  background-color: pink;
+.restaurantList {
+  width: 220px;
+  height: 220px;
+  background-color: #e1e1e1;
+  border: 1px solid black;
 }
 
-#box2 {
-  width: 200px;
-  height: 200px;
-  background-color: pink;
+.restaurantHeader {
+  background-color: #7ec479;
+  height: 50px;
+  width: 1080px;
+  margin-bottom: 20px;
 }
 
-#box3 {
-  width: 200px;
-  height: 200px;
-  background-color: pink;
+h1 {
+  text-align: center;
+  margin: 2px 0 0px 0;
+}
+h3 {
+  text-align: left;
 }
 
-#box4 {
-  width: 200px;
-  height: 200px;
-  background-color: pink;
+h4 {
+  float: right;
 }
 
-#box5 {
-  width: 200px;
-  height: 200px;
-  background-color: pink;
+h5 {
+  margin-bottom: 0;
 }
 
-#box6 {
-  width: 200px;
-  height: 200px;
-  background-color: pink;
+img {
+  width: 100px;
+  height: 100px;
+  /*align-content: center;*/
+}
+
+.buttonys {
+  float: right;
+  padding-top: 100px;
 }
