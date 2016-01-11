@@ -27,11 +27,23 @@ router.get('/new', function(req, res, next){
   });
 });
 
-// router.post('/restaurants', function(req, res, next){
-//   allRows = rows;
-//   restaurants().insert(restaurant).then(function(result){
-//     res.redirect('/restaurants');
-//   });
-// });
+router.post('/restaurants', function(req, res, next){
+  console.log(req.body)
+  var restaurantNew = {
+    name: req.body.restaurantName,
+    city: req.body.city,
+    state: req.body.state,
+    cuisine: req.body.cuisine,
+    rating: req.body.rating,
+    bio: req.body.textdescription,
+    image: req.body.imageUrl
+  };
+  console.log("*************")
+  console.log(restaurantNew)
+  restaurantinfo().insert(restaurantNew).then(function(result){
+    res.redirect('/');
+  });
+  });
+
 
 module.exports = router;
