@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+
+  if obj
+  div.container
+    div.restaurantHeader
+      p.title= restaurantNew.name
+      a(class='homeLink', href='/') Home  
+    div.restaurantHolder 
+      div.restaurantImage
+        img.show(src= restaurantNew.image)
+      div.restaurantInfo
+        p= restaurantNew.cuisine 
+        p= 'Located in ' + restaurantNew.city + ', ' + restaurantNew.state
+        if restaurantNew.bio
+          p= restaurantNew.bio
+        else
+          p= 'No Description Available'
+        p= 'Rating:' + restaurantNew.rating 
+          -for(var i=0; i<restaurantNew.rating; i++)
+            img.star(src="../images/star.png")
+        a(href='/edit/'+ restaurantNew.id).cancel.edit Edit
+        a(href='/' + restaurantNew.id + '/delete').cancel.delete Delete
+        
+ 

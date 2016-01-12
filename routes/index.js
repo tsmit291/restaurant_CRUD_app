@@ -26,9 +26,8 @@ router.get('/new', function(req, res, next){
     res.render('restaurants/new', { obj: allRows });
   });
 });
-
-router.post('/restaurants', function(req, res, next){
-  console.log(req.body)
+//* new restaurant * //
+router.post('/', function(req, res, next){
   var restaurantNew = {
     name: req.body.restaurantName,
     city: req.body.city,
@@ -38,12 +37,28 @@ router.post('/restaurants', function(req, res, next){
     bio: req.body.textdescription,
     image: req.body.imageUrl
   };
-  console.log("*************")
-  console.log(restaurantNew)
   restaurantinfo().insert(restaurantNew).then(function(result){
     res.redirect('/');
   });
   });
 
+router.get('/:id', function (req, res, next){
+  restaurantinfo().where('id', req.params.id).first().then(function(result){
+    res.render('restaurants/show', {restaurantNew: result});
+  });
+});
+
+router.get('/:id/edit', function (req, res, next){
+  restaurants().where('id', req.params.id).first().then(function(result){
+    res.render('restaurants/edit', {restaurantNew: result});
+  });
+});
+
+router.post('/:id', function (req, res){
+  restaurants().where('id', req.params.id)
+  .then(function(result){
+  res.redirect('/');
+  });
+});
 
 module.exports = router;

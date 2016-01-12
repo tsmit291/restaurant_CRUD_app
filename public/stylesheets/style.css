@@ -72,3 +72,9 @@ label {
 input {
   padding: 2px 0 5px 5px;
 }
+
+.star {
+  float: right;
+  width: 20%;
+  display: inline;
+}

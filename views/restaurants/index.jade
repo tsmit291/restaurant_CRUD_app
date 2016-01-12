@@ -3,18 +3,19 @@ extends ../layout
 block content
 
   if obj
-      table.table.table-striped
-        thead
-          div.restaurantHeader
-            h1= 'gTables'
-            a(class='newEats', href='/new') New Restaurant
+    table.table.table-striped
+      thead
+        div.restaurantHeader
+          h1= 'gTables'
+          a(class='newEats', href='/new') New Restaurant
             
-        tbody
-          for restaurant in obj
-            div.restaurantList
-              h3= restaurant.name
-              img(src=restaurant.image)
-              h5= restaurant.city + ', ' + restaurant.state
-              h5= restaurant.cuisine
-              h6= restaurant.rating
+      tbody
+        for restaurant in obj
+          div.restaurantList
+            h3
+              a.name(href='/'+ restaurant.id)= restaurant.name
+            img(src=restaurant.image)
+            h5= restaurant.city + ', ' + restaurant.state
+            h5= restaurant.cuisine
+            h6= restaurant.rating
               
