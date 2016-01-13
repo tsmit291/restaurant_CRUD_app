@@ -9,7 +9,7 @@ block content
       a(class='homeLink', href='/') Home  
     div.restaurantHolder 
       div.restaurantImage
-        img.show(src= restaurantNew.image)
+        img.show(src= restaurantNew.image, id='restaurantNewimg')
       div.restaurantInfo
         p= restaurantNew.cuisine 
         p= 'Located in ' + restaurantNew.city + ', ' + restaurantNew.state
@@ -20,7 +20,11 @@ block content
         p= 'Rating:' + restaurantNew.rating 
           -for(var i=0; i<restaurantNew.rating; i++)
             img.star(src="../images/star.png")
-        a(href='/edit/'+ restaurantNew.id).cancel.edit Edit
-        a(href='/' + restaurantNew.id + '/delete').cancel.delete Delete
+    div.buttonstoPg
+      a.edit(href='/'+restaurantNew.id+'/edit' id='editbutton')
+        em Edit
+      form(action='/'+restaurantNew.id+'/delete' method='post')
+        input.delete(type='submit' value='Delete')
+
         
  

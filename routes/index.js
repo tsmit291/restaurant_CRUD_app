@@ -49,16 +49,17 @@ router.get('/:id', function (req, res, next){
 });
 
 router.get('/:id/edit', function (req, res, next){
-  restaurants().where('id', req.params.id).first().then(function(result){
+  restaurantinfo().where('id', req.params.id).first()
+  .then(function(result){
     res.render('restaurants/edit', {restaurantNew: result});
   });
 });
 
-router.post('/:id', function (req, res){
-  restaurants().where('id', req.params.id)
-  .then(function(result){
-  res.redirect('/');
-  });
-});
+router.post('/:id/delete', function (req, res, next){
+  restaurantinfo().where('id', req.params.id).del()
+  .then(function (result){
+    res.redirect('/');
+  })
+})
 
 module.exports = router;
