@@ -137,3 +137,8 @@ input {
 .delete {
   color: black;
 }
+
+#submity {
+  color: white;
+  background-color: green;
+}

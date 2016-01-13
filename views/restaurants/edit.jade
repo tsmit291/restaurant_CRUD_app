@@ -97,6 +97,7 @@ block content
         br
         textarea.form-control(rows='5' name='textdescription' id='textdescription') #{restaurantNew.textdescription}
       div.buttonstoPg
-      a.submit(href='/') Submit 
+        form(action='/'+restaurantNew.id method='post')
+          input.submit(type='submit' value='Submit')
       
         
