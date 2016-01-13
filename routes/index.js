@@ -19,6 +19,15 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/admin', function(req, res, next) {
+  var allRows;
+  var tableyEmployees =
+  knex.select().table('restaurantinfo').then(function (rows){
+    allRows = rows;
+    res.render('restaurants/admin', {obj: allRows });
+  });
+});
+
 router.get('/new', function(req, res, next){
   var allRows;
   var tabley = knex.select().table('restaurantinfo').then(function (rows){
