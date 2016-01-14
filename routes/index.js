@@ -40,7 +40,7 @@ router.post('/', function(req, res, next){
   restaurantinfo().insert(restaurantNew).then(function(result){
     res.redirect('/');
   });
-  });
+});
 
 router.get('/:id', function (req, res, next){
   restaurantinfo().where('id', req.params.id).first().then(function(result){
