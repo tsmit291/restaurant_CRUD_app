@@ -6,9 +6,14 @@ var knex = require('knex')({
   connection: 'postgres://localhost/restaurants'
 });
 
+var join_stuff = function(arg1, arg2){
+
+}
+
 function restaurantinfo(){
   return knex('restaurantinfo');
 };
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -18,7 +23,7 @@ router.get('/', function(req, res, next) {
     res.render('restaurants/index', { obj: allRows });
   });
 });
-
+/* Gets the restaurants on the admin page */
 router.get('/admin', function(req, res, next) {
   var allRows;
   var tableyEmployees =
@@ -27,6 +32,14 @@ router.get('/admin', function(req, res, next) {
     res.render('restaurants/admin', {obj: allRows });
   });
 });
+
+/* Gets the employee first name and last name under each restaurant */
+knex('restaurantinfo')
+.join('employees', 'restaurant.id', '=', 'employee_id')
+.select('employees.firstname', 'employees.lastname')
+.then(function(payload){
+  res.render('index', {title: 'Express', payload: payload})
+})
 
 router.get('/new', function(req, res, next){
   var allRows;
