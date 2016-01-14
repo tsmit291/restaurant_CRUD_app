@@ -31,21 +31,22 @@ router.get('/admin', function(req, res, next) {
     allRows = rows;
     res.render('restaurants/admin', {obj: allRows });
   });
-});
 
 /* Gets the employee first name and last name under each restaurant */
 knex('restaurantinfo')
-.join('employees', 'restaurant.id', '=', 'employee_id')
+.join('employees', 'restaurantinfo.id', '=', 'employees.restaurantinfo_id')
 .select('employees.firstname', 'employees.lastname')
-.then(function(payload){
-  res.render('index', {title: 'Express', payload: payload})
-})
+.then(function(employee){
+  console.log(employee)
+
+});
+});
 
 router.get('/new', function(req, res, next){
   var allRows;
   var tabley = knex.select().table('restaurantinfo').then(function (rows){
     allRows = rows;
-    res.render('restaurants/new', { obj: allRows });
+    res.render('restaurants/new', { obj: allRows , employees: employee});
   });
 });
 //* new restaurant * //
