@@ -6,10 +6,6 @@ var knex = require('knex')({
   connection: 'postgres://localhost/restaurants'
 });
 
-var join_stuff = function(arg1, arg2){
-
-}
-
 function restaurantinfo(){
   return knex('restaurantinfo');
 };
@@ -23,7 +19,8 @@ router.get('/', function(req, res, next) {
     res.render('restaurants/index', { obj: allRows });
   });
 });
-/* Gets the restaurants on the admin page */
+
+/* Gets the restaurants on the admin homepage, remember everything after this will be admin/new or admin/edit or admin/delete */
 router.get('/admin', function(req, res, next) {
   var allRows;
   var tableyEmployees =
@@ -42,6 +39,7 @@ knex('restaurantinfo')
 });
 });
 
+/* Gets a new restaurant add */
 router.get('/new', function(req, res, next){
   var allRows;
   var tabley = knex.select().table('restaurantinfo').then(function (rows){
@@ -49,7 +47,8 @@ router.get('/new', function(req, res, next){
     res.render('restaurants/new', { obj: allRows , employees: employee});
   });
 });
-//* new restaurant * //
+
+/* new restaurant post- redirects to home page */
 router.post('/', function(req, res, next){
   var restaurantNew = {
     name: req.body.restaurantName,
@@ -65,12 +64,14 @@ router.post('/', function(req, res, next){
   });
   });
 
+/* click on one specific restaurant */
 router.get('/:id', function (req, res, next){
   restaurantinfo().where('id', req.params.id).first().then(function(result){
     res.render('restaurants/show', {restaurantNew: result});
   });
 });
 
+/* edit on one specific restaurant */
 router.get('/:id/edit', function (req, res, next){
   restaurantinfo().where('id', req.params.id).first()
   .then(function(result){
@@ -78,6 +79,7 @@ router.get('/:id/edit', function (req, res, next){
   });
 });
 
+/* delete one specific restaurant */
 router.post('/:id/delete', function (req, res, next){
   restaurantinfo().where('id', req.params.id).del()
   .then(function (result){
