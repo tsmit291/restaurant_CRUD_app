@@ -95,9 +95,9 @@ block content
       div.form-group
         label(for='textdescription' placeholder='Short Bio') Description
         br
-        textarea.form-control(rows='5' name='textdescription' id='textdescription') #{restaurantNew.textdescription}
+        textarea.form-control(rows='5' name='bio' id='textdescription') #{restaurantNew.bio}
       div.buttonstoPg
-        form(action='/'+restaurantNew.id method='post')
+        form(action='/restaurants/'+restaurantNew.id method='post')
           input.submit(type='submit' value='Submit')
       
         
