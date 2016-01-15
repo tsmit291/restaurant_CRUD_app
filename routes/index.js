@@ -61,7 +61,7 @@ router.post('restaurants/', function(req, res, next){
     image: req.body.imageUrl
   };
   restaurantinfo().insert(restaurantNew).then(function(result){
-    res.redirect('/');
+    res.redirect('/restaurants');
   });
 });
 
