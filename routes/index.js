@@ -10,6 +10,11 @@ function restaurantinfo(){
   return knex('restaurantinfo');
 };
 
+function reviews(){
+  return knex('reviews')
+};
+/* hooks up my reviews table */
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -29,15 +34,15 @@ router.get('/admin', function(req, res, next) {
     res.render('restaurants/admin', {obj: allRows });
   });
 
-/* Gets the employee first name and last name under each restaurant */
-knex('restaurantinfo')
-.join('employees', 'restaurantinfo.id', '=', 'employees.restaurantinfo_id')
-.select('employees.firstname', 'employees.lastname')
-.then(function(employee){
-  console.log(employee)
+ /*Gets the employee first name and last name under each restaurant */
+ router.get('/:id/edit', function(req, res, next){
+   my_id = req.params.id;
+  Restaurants().where({id: my_id}).then(function(payload){
+   Employees().where({restaurant_id: my_id}).then(function(payload2){
+    res.render('restaurants/edit', {payload: payload[0], payload})
+  })
 
-});
-});
+
 
 /* Gets a new restaurant add */
 router.get('/new', function(req, res, next){
