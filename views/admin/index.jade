@@ -3,10 +3,10 @@ extends ../layout
 block content
 
   if obj
-    table.table.table-striped
+    table
       thead
         div.restaurantHeader
-          h1= 'gTables'
+          h1= 'gTables - Admin'
           a(class='newEats', href='/new') New Restaurant
           a(class='adminView', href='/admin') Admin View
             
@@ -14,7 +14,7 @@ block content
         for restaurant in obj
           div.restaurantList
             h3
-            a.name(href='/restaurants/'+restaurant.id)
+            a.name(href='/'+restaurant.id)
               h5= restaurant.name
             img(src=restaurant.image)
             h5= restaurant.city + ', ' + restaurant.state

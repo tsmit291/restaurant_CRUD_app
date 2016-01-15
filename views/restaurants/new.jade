@@ -10,11 +10,11 @@ block content
       form(name="createRestaurant", action="/", method="post")
            label(for = 'restaurantName') Name
            br
-           input(type="text", name="restaurantName")
+           input(type="text", name="restaurantName", placeholder='Name')
            br
            label(for = 'city') Location
            br
-           input(type="text", name="city") 
+           input(type="text", name="city", placeholder="City") 
            br
            select(name="state")
             |<option value="AL">Alabama</option>
@@ -88,9 +88,9 @@ block content
            br
            label(for = 'imagey') Image 
            br
-           input(type="text", name="imageUrl")
+           input(type="text", name="imageUrl", placeholder="Image")
            br
-           textarea(type="text", rows="15", cols="45", name="textdescription")
+           textarea(type="text", rows="15", cols="45", name="bio", placeholder='Short Bio')
            br
            div.buttonys
              input(type="submit", value="submit", id="submit")
