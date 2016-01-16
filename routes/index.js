@@ -15,15 +15,22 @@ function reviews(){
 /* GET home page. */
 
 router.get('/', function(req, res, next){
-  console.log('HEYYYYYYY');
   res.redirect('/restaurants');
 });
 
-router.get('/restaurants', function(req, res, next) {
+router.get('/restaurants/', function(req, res, next) {
   var allRows;
   var tabley = knex.select().table('restaurantinfo').then(function (rows){
     allRows = rows;
     res.render('restaurants/index', { obj: allRows });
+  });
+});
+
+router.get('/restaurants/:id', function(req, res, next) {
+  var allRows;
+  var tabley = knex.select().table('restaurantinfo').then(function (rows){
+    allRows = rows;
+    res.render('restaurants/:id', { obj: allRows });
   });
 });
 
