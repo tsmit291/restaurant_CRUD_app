@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('../public/db/knex');
+var knex = require('../db/knex');
 
 function restaurantinfo(){
   return knex('restaurantinfo');
@@ -15,6 +15,7 @@ function reviews(){
 /* GET home page. */
 
 router.get('/', function(req, res, next){
+  console.log('HEYYYYYYY');
   res.redirect('/restaurants');
 });
 
