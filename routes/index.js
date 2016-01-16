@@ -13,6 +13,11 @@ function reviews(){
 
 
 /* GET home page. */
+
+router.get('/', function(req, res, next){
+  res.redirect('/restaurants');
+});
+
 router.get('/restaurants', function(req, res, next) {
   var allRows;
   var tabley = knex.select().table('restaurantinfo').then(function (rows){
