@@ -27,15 +27,15 @@ router.get('/restaurants/', function(req, res, next) {
 
 /* When I click a restaurant name I am taken to that restaurant's show page*/
 
-router.get('/restaurants/:id', function(req, res, next) {
-  var allRows;
-  var tabley = knex.select().table('restaurantinfo').then(function (rows){
-    allRows = rows;
-    res.render('restaurants/show', { obj: allRows });
-  });
-});
+// router.get('/restaurants/:id', function(req, res, next) {
+//   var allRows;
+//   var tabley = knex.select().table('restaurantinfo').then(function (rows){
+//     allRows = rows;
+//     res.render('restaurants/show', { obj: allRows });
+//   });
+// });
 
-router.post('/restaurants/:id')
+
 
 /* Gets the restaurants on the admin homepage, remember everything after this will be admin/new or admin/edit or admin/delete */
 router.get('restaurants/admin', function(req, res, next) {
@@ -58,18 +58,18 @@ router.get('restaurants/admin', function(req, res, next) {
 });
 
 /* Gets a new restaurant add */
-router.get('restaurants/new', function(req, res, next){
+router.get('/restaurants/new', function(req, res, next){
   var allRows;
   var tabley = knex.select().table('restaurantinfo').then(function (rows){
-    allRows = rows;
-    res.render('restaurants/new', { obj: allRows , employees: employee});
+  allRows = rows;
+    res.render('restaurants/new', { obj: allRows});
   });
 });
 
 /* new restaurant post- redirects to home page */
-router.post('restaurants/', function(req, res, next){
+router.post('/restaurants/', function(req, res, next){
   var restaurantNew = {
-    restaurantName: req.body.restaurantName,
+    name: req.body.restaurantName,
     city: req.body.city,
     state: req.body.state,
     cuisine: req.body.cuisine,
@@ -83,14 +83,15 @@ router.post('restaurants/', function(req, res, next){
 });
 
 /* click on one specific restaurant */
-router.get('restaurants/:id', function (req, res, next){
+router.get('/restaurants/:id', function (req, res, next){
   restaurantinfo().where('id', req.params.id).first().then(function(result){
+    console.log(result)
     res.render('restaurants/show', {restaurantNew: result});
   });
 });
 
 /* edit on one specific restaurant */
-router.get('restaurants/:id/edit', function (req, res, next){
+router.get('/restaurants/:id/edit', function (req, res, next){
   restaurantinfo().where('id', req.params.id).first()
   .then(function(result){
     res.render('restaurants/edit', {restaurantNew: result});
@@ -98,7 +99,7 @@ router.get('restaurants/:id/edit', function (req, res, next){
 });
 
 /* delete one specific restaurant */
-router.post('restaurants/:id/delete', function (req, res, next){
+router.post('/restaurants/:id/delete', function (req, res, next){
   restaurantinfo().where('id', req.params.id).del()
   .then(function (result){
     res.redirect('/');
