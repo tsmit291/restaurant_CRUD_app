@@ -69,7 +69,7 @@ router.get('restaurants/new', function(req, res, next){
 /* new restaurant post- redirects to home page */
 router.post('restaurants/', function(req, res, next){
   var restaurantNew = {
-    name: req.body.restaurantName,
+    restaurantName: req.body.restaurantName,
     city: req.body.city,
     state: req.body.state,
     cuisine: req.body.cuisine,
