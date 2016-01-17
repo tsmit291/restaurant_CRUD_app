@@ -26,13 +26,17 @@ router.get('/restaurants/', function(req, res, next) {
   });
 });
 
+/* When I click a restaurant name I am taken to that restaurant's show page*/
+
 router.get('/restaurants/:id', function(req, res, next) {
   var allRows;
   var tabley = knex.select().table('restaurantinfo').then(function (rows){
     allRows = rows;
-    res.render('restaurants/:id', { obj: allRows });
+    res.render('restaurants/show', { obj: allRows });
   });
 });
+
+router.post('/restaurants/:id')
 
 /* Gets the restaurants on the admin homepage, remember everything after this will be admin/new or admin/edit or admin/delete */
 router.get('restaurants/admin', function(req, res, next) {
