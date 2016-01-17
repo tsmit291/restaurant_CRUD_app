@@ -11,8 +11,7 @@ function reviews(){
 };
 /* hooks up my reviews table */
 
-
-/* GET home page. */
+/* GET home page. and redirect to /restaurants */
 
 router.get('/', function(req, res, next){
   res.redirect('/restaurants');
