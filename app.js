@@ -8,6 +8,7 @@ var env = require('dotenv').load();
 
 var routes = require('./routes/index');
 var admin = require('./routes/admin');
+var reviews = require('./routes/reviews');
 var app = express();
 
 // view engine setup

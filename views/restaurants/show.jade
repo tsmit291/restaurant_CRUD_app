@@ -25,6 +25,18 @@ block content
         em Edit
       form(action='/restaurants/'+restaurantNew.id+'/delete' method='post')
         input.delete(type='submit' value='Delete')
+  div.containerTwo
+    for review in obj
+      div.reviewList
+        p= reviewList.date
+        p= review.reviewer
+        p= review.description
+        p= review.rating
+      a.edit(href='/reviews/new/'+restaurantNew.id)
+        em Add New Review
+    
+      
+      
 
         
  

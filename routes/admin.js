@@ -15,12 +15,3 @@ function employees(){
   return knex('employees')
 };
 /* hooks up my employees table*/
-
-router.get('/', function(req, res, next){
-  var allRows;
-  var tabley = knex.select().table('restaurantinfo').then(function(rows){
-    res.render('admin/show', {obj: allRows});
-  });
-});
-
-/* my admin index page will show all of my restaurants*/
