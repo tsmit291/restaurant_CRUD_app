@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+
+  p THIS SHIT IS AWESOME
+    if obj
+      div.restaurantHeader
+        h1 Edit
+        |#{restaurantNew.name} - Review Edit
+      form(action='/restaurants/show'+restaurantNew.id method='post')
+        div.form-group
+          label(for='reviewDate') Date
+        br
+        input.form-control(type='text' id='date' name='date' value='#{review.date}')
+        br
+        div.form-group
+          label(for='reviewerName') Reviewer Name
+        br
+        input.form-control(type='text' id='reviewerName' name='reviewerName' value='#review.reviewer')
+        value=''
+      for review in obj
+          if review.restaurant_id = restaurantNew.id
+            div.reviewDiv
+              p= 'Date: ' + review.date
+              p= 'Reviewer Name: ' + review.reviewer
+              p= review.description
+              p= review.rating
+              a.edit(href='/restaurants/'+restaurantNew.id+'/reviews/'+review.id+'/new') Edit Review
+        a.edit(href='/reviews/new/'+restaurantNew.id)
+          em Add New Review
+      
+      
+      
+
+        
+ 

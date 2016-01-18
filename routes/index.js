@@ -6,6 +6,10 @@ function restaurantinfo(){
   return knex('restaurantinfo');
 };
 
+function reviews(){
+  return knex('reviews');
+};
+
 /* GET home page. and redirect to /restaurants */
 router.get('/', function(req, res, next){
   res.redirect('/restaurants');
@@ -20,10 +24,11 @@ router.get('/restaurants/', function(req, res, next) {
 });
 
 /*When I click a restaurant name I am taken to that restaurants show page*/
-router.get('/restaurants/:id'/*equals this*/, function (req, res, next){
+router.get('/restaurants/:id', function (req, res, next){
   restaurantinfo().where('id', req.params.id).first().then(function(result){
     var reviewTable = knex.select().table('reviews').where({'restaurant_id': req.params.id}).then(function(rows){
       allRows = rows;
+      console.log(rows);
       res.render('restaurants/show', {restaurantNew: result, obj: allRows});
     });
   });
@@ -37,6 +42,26 @@ router.get('/restaurants/new', function(req, res, next){
     res.render('restaurants/new', { obj: allRows});
   });
 });
+
+/*Edit a review */
+router.get('/restaurants/:id/reviews/:rid/edit', function (req, res, next){
+  restaurantinfo().where('id', req.params.id).first().then(function(result){
+    reviews().where('rid', req.params.rid).then(function(response){
+      res.render('reviews/edit', {restaurantNew: result, reviews: response});
+  });
+  });
+});
+
+router.get('/restaurants/:id', function (req, res, next){
+ restaurantinfo().where('id', req.params.id).first().then(function(result){
+   var reviewTable = knex.select().table('reviews').where({'restaurant_id': req.params.id}).then(function(rows){
+     allRows = rows;
+     console.log(allRows)
+     res.render('restaurants/show', {restaurantNew: result, obj: allRows});
+   });
+ });
+})
+
 
 /* new restaurant post- redirects to home page */
 router.post('/restaurants/', function(req, res, next){
@@ -96,9 +121,6 @@ router.get('restaurants/admin', function(req, res, next) {
   });
 });
 });
-
-
-
 
 
 

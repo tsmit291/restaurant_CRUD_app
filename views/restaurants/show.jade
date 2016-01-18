@@ -29,10 +29,12 @@ block content
     if obj
       for review in obj
           if review.restaurant_id = restaurantNew.id
-            p= 'Date: ' + review.date
-            p= 'Reviewer Name: ' + review.reviewer
-            p= review.description
-            p= review.rating
+            div.reviewDiv
+              p= 'Date: ' + review.date
+              p= 'Reviewer Name: ' + review.reviewer
+              p= review.description
+              p= review.rating
+              a.edit(href='/restaurants/'+restaurantNew.id+'/reviews/'+review.rid+'/edit') Edit Review
         a.edit(href='/reviews/new/'+restaurantNew.id)
           em Add New Review
       
