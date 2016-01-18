@@ -27,13 +27,10 @@ block content
         input.delete(type='submit' value='Delete')
   div.containerTwo
     if obj
-      p= 'something' + obj.name
       for review in obj
           if review.restaurant_id = restaurantNew.id
-            
-            p= review.restaurant_id
-            p= review.date
-            p= review.reviewer
+            p= 'Date: ' + review.date
+            p= 'Reviewer Name: ' + review.reviewer
             p= review.description
             p= review.rating
         a.edit(href='/reviews/new/'+restaurantNew.id)
