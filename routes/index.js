@@ -22,8 +22,11 @@ router.get('/restaurants/', function(req, res, next) {
 /*When I click a restaurant name I am taken to that restaurants show page*/
 router.get('/restaurants/:id', function (req, res, next){
   restaurantinfo().where('id', req.params.id).first().then(function(result){
-    console.log(result)
-    res.render('restaurants/show', {restaurantNew: result});
+    var reviewTable = knex.select().table('reviews').then(function(rows){
+      allRows = rows;
+      res.render('restaurants/show', {restaurantNew: result, obj: allRows});
+    });
+    //<-- maybe try passing it here with restaurantNew. Like pass both variables
   });
 });
 
