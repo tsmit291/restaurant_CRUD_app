@@ -1,23 +1,5 @@
 extends ../layout
 
 block content
-
-  if obj
-    table.table.table-striped
-      thead
-        div.restaurantHeader
-          h1= 'gTables'
-          a(class='newEats', href='/restaurants/new') New Restaurant
-          a(class='adminView', href='/restaurants/admin') Admin View
-            
-      tbody
-        for restaurant in obj
-          div.restaurantList
-            h3
-            a.name(href='/restaurants/'+restaurant.id)
-              h5= restaurant.name
-            img(src=restaurant.image)
-            h5= restaurant.city + ', ' + restaurant.state
-            h5= restaurant.cuisine
-            h6= restaurant.rating
-            
+  img.lemon(src="http://www.clker.com/cliparts/a/h/G/E/2/p/pink-lemon-slice-md.png")
+  p.lemonadeStand= 'Lemonade Stand'
